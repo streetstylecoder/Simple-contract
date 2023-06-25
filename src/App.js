@@ -17,7 +17,7 @@ function App() {
         return;
       } else {
         //add code here
-        const accounts = ""
+        const accounts = await ethereum.request({ method: "eth_requestAccounts" });
         setCurrentAccount(accounts[0]);
         console.log("Connected", currentAccount);
       }
@@ -43,7 +43,7 @@ function App() {
     try {      
       const transactionContract = getEthereumContract();
       // add code
-      const val = ""
+      const val = await transactionContract.getdata();
       setMyData(val.toString());      
     } catch (error) {
       console.log(error);
@@ -54,7 +54,7 @@ function App() {
     try {      
       const transactionContract = getEthereumContract();
       // add code
-      const val = ""
+      const val = await transactionContract.setdata(myNumber);
       alert("Transaction Submitted, please wait for confirmation popup");
       await val.wait()
       console.log(val);
